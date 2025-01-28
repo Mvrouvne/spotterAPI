@@ -7,6 +7,12 @@ name = "pypi"
 djangorestframework = "*"
 django = "==3.2.23"
 requests = "*"
+pandas = "*"
+googlemaps = "*"
+geopandas = "*"
+geopy = "*"
+reverse-geocoder = "*"
+us = "*"
 
 [dev-packages]
 
