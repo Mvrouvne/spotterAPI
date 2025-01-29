@@ -37,7 +37,6 @@ class   RoutesView(APIView):
         )
 
         route_response = route_details.json()
-        # print('route_response ==> ', response)
 
         if route_response['status'] != 'OK':
             return Response({'error': 'Invalid Coordinates'}, status=status.HTTP_400_BAD_REQUEST)
@@ -90,7 +89,6 @@ class   RoutesView(APIView):
                         "total_fuel_cost": f'${total_fuel_cost:.2f}',
                     }})
 
-            #  return HttpResponse(static_map_response.content, content_type="image/png")
         else:
             return Response(f"Error fetching static map: {static_map_response.status_code}", status=status.HTTP_417_EXPECTATION_FAILED)
 
@@ -138,7 +136,7 @@ class   RoutesView(APIView):
             cities += str(stop['Retail Price'])
             cities += '+'
 
-        waypoints = cities.split('+')
+        waypoints = [wp for wp in cities.split('+') if wp]
 
         return Response({
             "image_url": image_url,
@@ -147,8 +145,3 @@ class   RoutesView(APIView):
                 "fuel_stops": waypoints,
                 "total_fuel_cost": f'${total_fuel_cost:.2f}',
             }})
-            
-
-        ## import fuel fiel using pandas
-
-        return Response({'response': route_response})
