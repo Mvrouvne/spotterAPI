@@ -43,7 +43,6 @@ class   RoutesView(APIView):
 
         distance_meters = route_response['routes'][0]['legs'][0]['distance']['value']
         distance_miles = float(f'{(distance_meters / 1609.34):.2f}')
-        print('total_distance ==> ', distance_miles)
 
         MAX_RANGE = 500 # in miles
         df = pd.read_csv('fuel-prices.csv')
